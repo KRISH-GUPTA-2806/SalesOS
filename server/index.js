@@ -13,6 +13,10 @@ const app = express()
 
 app.use(cors())
 app.use(express.json())
+app.get("/", (req, res) => {
+  res.send("SalesOS Backend Running ✅")
+})
+
 
 // API routes
 app.use('/api/research', researchRoute)
