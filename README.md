@@ -1,245 +1,236 @@
-# SalesOS AI — Multi-Agent Sales Intelligence Platform
+# SalesOS — AI-Powered Sales Intelligence Platform
 
-> 🚀 **6 AI agents** that collaborate autonomously to research leads, write outreach, assess risk, recover stalled deals, generate competitive battlecards, and forecast your pipeline — all powered by **Groq** (100% free).
+<p align="center">
+  <img src="https://img.shields.io/badge/React_18-61DAFB?style=for-the-badge&logo=react&logoColor=black" />
+  <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" />
+  <img src="https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white" />
+  <img src="https://img.shields.io/badge/Groq_Llama_3.3_70B-FF6B35?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" />
+  <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white" />
+</p>
 
-![Tech Stack](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)
-![Backend](https://img.shields.io/badge/Express-000000?style=flat-square&logo=express)
-![AI](https://img.shields.io/badge/Llama_3.3_70B-Groq-orange?style=flat-square)
+<p align="center">
+  <b>6 AI agents that collaborate to automate your entire sales workflow — research, outreach, risk, recovery, competitive intel, and pipeline forecasting.</b>
+</p>
+
+<p align="center">
+  <a href="https://agent-69c8afea9b35a6b658e908fa--sales-os-et.netlify.app/" target="_blank">🚀 Live Demo</a>
+</p>
 
 ---
 
-## ✨ What This Does
+## Overview
 
-SalesOS AI is a **multi-agent AI system** where 6 specialized agents work together to automate the entire sales workflow:
+SalesOS is a multi-agent AI sales platform where six specialized agents work together to replace hours of manual sales work. Each agent handles a distinct part of the sales process — and they chain together intelligently so the output of one feeds directly into the next.
 
-| Agent | What It Does |
+The platform runs on **Groq's free API** with **Llama 3.3 70B**, delivering sub-2-second AI responses on a fully open, zero-cost stack.
+
+---
+
+## Agents
+
+| Agent | Responsibility |
 |---|---|
-| 🔍 **Research Agent** | Deep-dives into a company — overview, pain points, tech stack, buying signals, fit score |
-| 📧 **Outreach Agent** | Writes hyper-personalized cold emails, LinkedIn messages, follow-ups, and call scripts |
-| ⚠️ **Risk Agent** | Assesses deal risk with warning signals, urgency levels, and recovery plays |
-| 🔄 **Recovery Agent** | Creates creative win-back strategies for stalled/lost deals |
-| ⚔️ **Competitive Agent** | Generates tactical battlecards with weaknesses, objections, and landmine questions |
-| 📊 **Forecast Agent** | Analyzes the entire pipeline — win probabilities, revenue forecast, priority actions |
+| 🔍 **Research Agent** | Analyzes a target company — overview, pain points, tech stack, buying signals, and a fit score |
+| 📧 **Outreach Agent** | Writes personalized cold emails, LinkedIn messages, follow-ups, and call scripts using research output |
+| ⚠️ **Risk Agent** | Flags deal risk with warning signals, urgency levels, and recommended recovery plays |
+| 🔄 **Recovery Agent** | Generates win-back strategies for stalled or lost deals, informed by risk analysis |
+| ⚔️ **Competitive Agent** | Produces tactical battlecards with competitor weaknesses, objection handling, and landmine questions |
+| 📊 **Forecast Agent** | Analyses the full pipeline — win probabilities, revenue forecast, and priority actions |
 
-### 🚀 Auto Pilot Mode
+### Auto Pilot
 
-The **Auto Pilot** feature chains agents together intelligently:
-1. **Research** → discovers pain points and outreach angles
-2. **Outreach** → uses research to write surgically targeted emails
-3. **Risk Assessment** → evaluates deal health
-4. **Recovery** → auto-triggers if risk is high/critical, using risk analysis for targeted strategies
+Auto Pilot chains agents together with a single click:
 
-All with a **single click**.
+```
+Research → Outreach → Risk Assessment → Recovery (if risk is high/critical)
+```
+
+Research output feeds directly into Outreach. Risk output feeds directly into Recovery. No copy-pasting, no switching tabs.
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Layer | Technology |
 |---|---|
-| **Frontend** | React 18 + Vite |
-| **Backend** | Node.js + Express |
-| **AI** | Groq API with Llama 3.3 70B (FREE — no credit card) |
-| **Styling** | Tailwind CSS + Custom glassmorphism design system |
-| **Deploy** | Vercel / Render / Railway (all FREE) |
+| **Frontend** | React 18, Vite |
+| **Backend** | Node.js, Express |
+| **AI Model** | Llama 3.3 70B via Groq API |
+| **Styling** | Tailwind CSS, custom glassmorphism design system |
+| **Deployment** | Netlify (frontend) / Render (backend) |
 
 ---
 
-## 📋 Setup Guide
+## Features
+
+- **Agent Orchestration** — Auto Pilot chains agents so research feeds outreach, and risk analysis drives recovery strategy
+- **Drag & Drop Pipeline** — Move leads across stages (Lead → Qualified → Demo → Closed) visually
+- **Add / Remove Leads** — Dynamically manage your pipeline
+- **Search & Filter** — Find leads by name, company, industry, or risk level
+- **Result History** — Browse all past agent outputs per lead with tabbed navigation
+- **Copy to Clipboard** — One-click copy on every generated email or battlecard
+- **Pipeline Forecast** — AI-powered revenue forecast with deal-level win probability
+- **Retry Logic** — Automatic retries with exponential backoff on API errors
+- **Glassmorphism UI** — Dark-mode premium design with smooth animations and count-up stats
+
+---
+
+## Project Structure
+
+```
+salesos-ai/
+├── server/                    # Express backend
+│   ├── index.js               # Server entry point + static file serving
+│   ├── groq.js                # Groq client, retry logic, JSON extraction
+│   └── routes/
+│       ├── research.js        # Research Agent endpoint
+│       ├── outreach.js        # Outreach Agent endpoint (consumes research)
+│       ├── risk.js            # Risk Agent endpoint
+│       ├── recovery.js        # Recovery Agent endpoint (consumes risk)
+│       ├── competitive.js     # Competitive Agent endpoint
+│       └── forecast.js        # Forecast Agent endpoint
+│
+├── src/                       # React frontend
+│   ├── main.jsx               # React entry point
+│   ├── App.jsx                # Main dashboard — pipeline board & orchestration
+│   ├── App.css                # Design system (glassmorphism, animations)
+│   ├── api.js                 # API client
+│   ├── data/
+│   │   └── mockData.js        # Sample leads, stage config, agent config
+│   └── components/
+│       ├── StatsBar.jsx       # Animated pipeline stats with count-up
+│       ├── LeadCard.jsx       # Lead card with score ring & Auto Pilot button
+│       ├── AgentPanel.jsx     # Agent result panel with history tabs
+│       ├── ActivityFeed.jsx   # Timeline activity log
+│       └── CompetitivePanel.jsx  # Competitor battlecard generator
+│
+├── index.html
+├── vite.config.js             # Vite config — proxies /api to Express
+├── tailwind.config.js
+├── postcss.config.js
+├── package.json
+└── .env.example
+```
+
+---
+
+## Getting Started
 
 ### Prerequisites
 
-- **Node.js 18+** — [Download here](https://nodejs.org/)
-- **A Groq API key** (free, takes 2 minutes)
+- **Node.js 18+** — [Download](https://nodejs.org/)
+- **Groq API key** (free, no credit card required)
 
-### Step 1: Get Your FREE Groq API Key
+### 1. Get a Free Groq API Key
 
-1. Go to **https://console.groq.com**
-2. Sign up with Google or email (free, no credit card)
-3. Click **"API Keys"** in the left sidebar
-4. Click **"Create API Key"**
-5. Copy the key — it looks like `gsk_...`
+1. Go to [console.groq.com](https://console.groq.com)
+2. Sign up with Google or email
+3. Open **API Keys** in the sidebar
+4. Click **Create API Key** and copy it — it starts with `gsk_`
 
-### Step 2: Clone & Install
+### 2. Clone & Install
 
 ```bash
-# Clone the repo
 git clone https://github.com/YOUR_USERNAME/salesos-ai.git
 cd salesos-ai
-
-# Install all dependencies
 npm install
 ```
 
-### Step 3: Configure Environment
+### 3. Configure Environment
 
 ```bash
-# Create your .env file from the example
-# On Mac/Linux:
+# Mac / Linux
 cp .env.example .env
 
-# On Windows (Command Prompt):
+# Windows (Command Prompt)
 copy .env.example .env
 
-# On Windows (PowerShell):
+# Windows (PowerShell)
 Copy-Item .env.example .env
 ```
 
-Open `.env` in any text editor and paste your Groq key:
+Open `.env` and add your key:
 
 ```env
 GROQ_API_KEY=gsk_xxxxxxxxxxxxxxxxxxxx
 ```
 
-### Step 4: Run Locally
+### 4. Run Locally
 
 ```bash
 npm run dev
 ```
 
-This starts **both** the Express API server (port 5000) and the Vite React dev server (port 3000) simultaneously.
+This starts both servers simultaneously:
+- **React dev server** → [http://localhost:3000](http://localhost:3000)
+- **Express API server** → [http://localhost:5000](http://localhost:5000)
 
-Open **http://localhost:3000** in your browser.
-
-### Verify It Works
-
-- Click **"Research"** on any lead card → AI analyzes the company
-- Click **"Outreach"** → AI generates a personalized cold email
-- Click **"Risk Scan"** → AI flags deal risk and suggests recovery
-- Click **🚀 Auto Pilot** → Watch all agents chain together automatically
-- Click **📊 Pipeline Forecast** in the header → AI forecasts your entire pipeline
-- Type a competitor name in the **Competitive Intel** panel → AI generates a battlecard
-- **Drag and drop** leads between pipeline stages
-- Click **✨ Add Lead** to add new leads
+The Vite proxy in `vite.config.js` forwards all `/api` requests from port 3000 to the Express server on port 5000 automatically.
 
 ---
 
-## 🚀 Deploy
+## API Endpoints
 
-### Option A: Deploy to Render (Recommended for Express apps)
+All endpoints accept `POST` requests with `Content-Type: application/json`.
+
+| Endpoint | Body | Description |
+|---|---|---|
+| `POST /api/research` | `{ company, contact, role, industry, note }` | Deep-dive company research |
+| `POST /api/outreach` | `{ company, contact, role, industry, note, researchData? }` | Generate personalized outreach |
+| `POST /api/risk` | `{ company, contact, value, stage, daysSilent, note }` | Assess deal risk |
+| `POST /api/recovery` | `{ company, contact, value, stage, note, riskData? }` | Win-back strategies |
+| `POST /api/competitive` | `{ competitor, ourProduct }` | Generate competitive battlecard |
+| `POST /api/forecast` | `{ leads }` | Full pipeline forecast |
+
+When `researchData` is passed to `/api/outreach`, the Outreach Agent uses it to write more targeted messaging. Similarly, `riskData` passed to `/api/recovery` produces more specific win-back strategies.
+
+---
+
+## Deployment
+
+### Render (Recommended — full-stack)
 
 1. Push your code to GitHub
-2. Go to **https://render.com** → sign in → New Web Service
+2. Go to [render.com](https://render.com) → **New Web Service**
 3. Connect your repo
-4. **Build Command**: `npm install && npm run build`
-5. **Start Command**: `npm start`
-6. Add environment variable: `GROQ_API_KEY` = your key
-7. Deploy!
+4. **Build Command:** `npm install && npm run build`
+5. **Start Command:** `npm start`
+6. Add environment variable: `GROQ_API_KEY`
 
-### Option B: Deploy to Vercel
+### Netlify (Frontend) + Render (Backend)
 
-1. Push to GitHub
-2. Go to **https://vercel.com** → New Project → import repo
-3. **Build Command**: `npm run build`
-4. **Output Directory**: `dist`
-5. Add `GROQ_API_KEY` in Settings → Environment Variables
-6. You'll also need a [Vercel Serverless Function](https://vercel.com/docs/functions) or use the Express server on a separate service
+Deploy the frontend separately on Netlify and point the Vite proxy (or a `_redirects` rule) at your Render backend URL.
 
-### Option C: Deploy to Railway
+### Railway
 
 1. Push to GitHub
-2. Go to **https://railway.app** → New Project → Deploy from GitHub
-3. Add `GROQ_API_KEY` environment variable
-4. Railway auto-detects Node.js — it will run `npm start`
-5. Done!
-
-### Push to GitHub
-
-```bash
-git init
-git add .
-git commit -m "SalesOS AI - multi-agent sales intelligence"
-git remote add origin https://github.com/YOUR_USERNAME/salesos-ai.git
-git branch -M main
-git push -u origin main
-```
+2. Go to [railway.app](https://railway.app) → **New Project → Deploy from GitHub**
+3. Add `GROQ_API_KEY` as an environment variable
+4. Railway auto-detects Node.js and runs `npm start`
 
 ---
 
-## 📁 Project Structure
+## Environment Variables
 
-```
-salesos-ai/
-├── server/                    ← Express Backend
-│   ├── index.js               ← Server entry + static file serving
-│   ├── groq.js                ← Groq client with retries
-│   └── routes/
-│       ├── research.js        ← Research Agent API
-│       ├── outreach.js        ← Outreach Agent API (chains from research)
-│       ├── risk.js            ← Risk Agent API
-│       ├── recovery.js        ← Recovery Agent API (chains from risk)
-│       ├── competitive.js     ← Competitive Agent API
-│       └── forecast.js        ← Forecast Agent API
-├── src/                       ← React Frontend
-│   ├── main.jsx               ← React entry point
-│   ├── App.jsx                ← Dashboard (orchestration + pipeline)
-│   ├── App.css                ← Design system (glassmorphism, animations)
-│   ├── data/
-│   │   └── mockData.js        ← Sample leads & agent configs
-│   └── components/
-│       ├── StatsBar.jsx       ← Animated stats with count-up
-│       ├── LeadCard.jsx       ← Lead card with score ring & auto-pilot
-│       ├── AgentPanel.jsx     ← Agent results with copy & history tabs
-│       ├── ActivityFeed.jsx   ← Timeline-style agent activity log
-│       └── CompetitivePanel.jsx ← Competitor battlecard generator
-├── index.html                 ← HTML entry point
-├── vite.config.js             ← Vite config with API proxy
-├── tailwind.config.js
-├── postcss.config.js
-├── package.json
-├── .env.example               ← Environment template
-└── README.md
-```
+| Variable | Required | Description |
+|---|---|---|
+| `GROQ_API_KEY` | ✅ Yes | Your Groq API key from [console.groq.com](https://console.groq.com) |
 
 ---
 
-## 🧠 Key Features
-
-| Feature | Description |
-|---|---|
-| **Agent Orchestration** | Auto Pilot chains agents: Research → Outreach → Risk → Recovery |
-| **Agent Collaboration** | Research feeds into Outreach; Risk feeds into Recovery |
-| **Drag & Drop Pipeline** | Move leads between stages visually |
-| **Add/Remove Leads** | Dynamically manage your pipeline |
-| **Search & Filter** | Find leads by name, company, industry, or risk level |
-| **Result History** | Browse all past agent results with tabs |
-| **Copy to Clipboard** | One-click copy on all generated emails |
-| **Pipeline Forecast** | AI-powered revenue forecast with deal-level predictions |
-| **Retry Logic** | Automatic retries with exponential backoff on API errors |
-| **Glassmorphism UI** | Premium dark-mode design with animations |
-
----
-
-## 🎤 Demo Script (3 Minutes)
-
-1. **Open the live URL** — show the animated pipeline board with stats counting up
-2. **Click 🚀 Auto Pilot** on "Razorpay" — watch 4 agents chain together live
-3. While that runs, show the **score ring**, **risk badges**, and **drag-and-drop**
-4. Show the **Agent Output panel** — flip through history tabs (Research → Outreach → Risk)
-5. Click **📊 Pipeline Forecast** — show AI forecasting the entire pipeline
-6. Type "Salesforce" in **Competitive Intel** → instant battlecard
-7. Click **✨ Add Lead** → add a new company → show it appear in the pipeline
-
-**Key talking points:**
-- "6 AI agents that actually collaborate, not just run independently"
-- "Auto Pilot chains agents intelligently — research feeds into outreach, risk triggers recovery"
-- "Node.js + Express backend, React frontend — clean separation of concerns"
-- "Runs on Llama 3.3 70B via Groq — completely free and sub-2-second responses"
-
----
-
-## 🔧 Troubleshooting
+## Troubleshooting
 
 | Problem | Fix |
 |---|---|
-| `npm install` fails | Make sure Node.js 18+ is installed: `node --version` |
-| Port 3000 in use | Change the port in `vite.config.js` |
-| Agent returns error | Check your `.env` has the correct Groq key |
-| API calls fail in dev | Make sure both servers are running (`npm run dev` runs both) |
-| Production build fails | Run `npm run build` to see errors |
+| `npm install` fails | Ensure Node.js 18+ is installed: `node --version` |
+| Port 3000 already in use | Change the port in `vite.config.js` |
+| Agent returns an error | Verify your `.env` has the correct Groq key |
+| API calls fail in dev | Confirm both servers are running — `npm run dev` starts both |
+| Production build fails | Run `npm run build` to see specific errors |
 
 ---
 
-## 📄 License
+## License
 
-MIT — built for hackathons, learning, and building the future of AI-powered sales.
+MIT — free for personal projects, hackathons, and learning.
